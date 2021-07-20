@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>画笔</title>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="600" style="border: 1px solid red;">
+			
+		</canvas>
+		<script type="text/javascript">
+			var context = document.getElementById('myCanvas')
+			var ctx = context.getContext("2d");
+			
+			var state =false
+			//添加鼠标事件
+			context.addEventListener('mousedown',function(){
+				state = true
+				ctx.beginPath()  //按下就需要做
+			}),
+			context.addEventListener('mousemove',function(e){
+				if(state){
+					var x = e.offsetX
+					var y = e.offsetY
+					ctx.lineTo(x,y)//划线
+					ctx.stroke()//着色
+				}
+				
+			}),
+			context.addEventListener('mouseup',function(){
+				state = false 
+			})
+		</script>
+	</body>
+</html>
