@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+			height: 400px;
+			width: 400px;
+			position: absolute;
+			top: 10%;
+			left: 30%;
+			border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas  width="400" height="400"></canvas>
+		<script type="text/javascript">
+			var context = document.querySelector('canvas')
+			ctx = context.getContext('2d')
+			var x0 = context.width/2
+			var y0 = context.height/2
+			var startRadian = 0; //开始角度
+			var endRadian; //结束角度
+			var total = 0
+			var data=[
+				{
+				          color: "#F96F4B",
+				          num: 0.3,
+				        },
+				        {
+				          color: "#F49F4C",
+				          num: 0.5,
+				        },
+				        {
+				          color: "blue",
+				          num: 0.1,
+				        },
+				        {
+				          color: "#69A8F7",
+				          num: 0.1,
+				        },
+			]
+			for(var i in data){
+			total += data[i].num
+			}
+			for(var n in data){
+				var item = data[n]
+				endRadian = item.num/total * 2 *Math.PI + startRadian;
+				ctx.beginPath();
+				ctx.fillStyle = item.color
+				ctx.moveTo(x0,y0)
+				ctx.arc(x0,y0,100,startRadian,endRadian,false)
+				startRadian = endRadian
+				ctx.fill()
+			}
+		</script>
+	</body>
+</html>
